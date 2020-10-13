@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="shortcut icon" type="image/x-icon" th:href="@{asset/img/favicon.ico.png}" />
+    <title>SpringBootAdminLTE</title>
+</head>
+<body>
+    <h1>SpringBootAdminLTE</h1>
+
+    <img th:src="@{asset/img/welcome.png}" />
+    <p>
+        <strong>Message :</strong> <span th:text="${message}">message</span> <br/>
+        <strong>Date :</strong> <span th:text="${date}">date</span> <br/>
+    </p>
+    
+    The following are the AdminLTE static demo pages:
+    <ul>
+      <li><a href="starter.html">starter</a></li>
+      <li><a href="index.html">index</a></li>
+      <li><a href="index.html}">index2</a></li>
+      <li><a href="index3.html">index3</a></li>
+    </ul>     
+
+    The following are dynamic demo pages:
+    <ul>
+      <li><a th:href="@{/starter}">AdminLTE - starter</a></li>
+      <li><a th:href="@{/customer}">CRUD example - Customer List</a></li>
+    </ul>     
+</body>
+</html>
