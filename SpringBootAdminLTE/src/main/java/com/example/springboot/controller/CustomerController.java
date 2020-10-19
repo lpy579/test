@@ -1,4 +1,4 @@
-package com.example.springboot.web;
+package com.example.springboot.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -40,7 +40,6 @@ public class CustomerController {
         model.addAttribute("beginIndex", begin);
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
-
         return "customer/list";
     }
 
@@ -69,5 +68,4 @@ public class CustomerController {
         redirectAttributes.addFlashAttribute("successFlash", "Customer was successfully deleted.");
         return "redirect:/customer";
     }
-
 }

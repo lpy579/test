@@ -2,7 +2,13 @@
 
 
 
-This is an example Java Web Application mainly using [SpringBoot 2](https://spring.io/projects/spring-boot) and [AdminLTE-3.0.5](https://adminlte.io/).
+This is an example Java Web Application mainly using [SpringBoot 2](https://spring.io/projects/spring-boot) and [AdminLTE](https://adminlte.io/).
+
+
+
+Reference Links:
+
+* [2020-04-21 - Spring Boot 基于 JUnit 5 实现单元测试](https://www.jianshu.com/p/4648fd55830e)
 
 
 
@@ -18,48 +24,51 @@ The development environment:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 
 
+
+This web application is created using [spring initializr](https://start.spring.io/), and integrate with AdminLTE-3.0.5.
+
 Maven build commands:
 
-1. Create the web application at [spring initializr](https://start.spring.io/).
+```shell
+# Check jar dependency, useful in finding the conflicting jars
+mvn dependency:tree
 
-2. Build the web application.
+# Download dependencies, including source code
+mvn dependency:sources -DdownloadSources=true -DdownloadJavadocs=false
 
-   ```shell
-   # Check jar dependency, useful in finding the conflicting jars
-   mvn dependency:tree
-   
-   # Download dependencies, including source code
-   mvn dependency:sources -DdownloadSources=true -DdownloadJavadocs=false
-   
-   # Run spring-boot application as a standalone application, 
-   # URL at http://localhost:8080/
-   mvn spring-boot:run
-   
-   # Clean up target folder (delete all)
-   mvn clean
-   
-   # Build (include testing) and install to local repository
-   mvn install
-   
-   # Build the release package
-   # To skip unit testing, add parameter: -Dmaven.test.skip=true
-   mvn clean package
-   
-   # Generate static site and reports
-   mvn site
-   ```
+# Run spring-boot application as a standalone application, 
+# URL at http://localhost:8080/
+mvn spring-boot:run
+
+# Clean up target folder (delete all)
+mvn clean
+
+# Build (include testing) and install to local repository
+mvn install
+
+# Run all test cases
+mvn test
+
+# Build the release package
+# To skip unit testing, add parameter: -Dmaven.test.skip=true
+mvn clean package
+
+# Generate static site and reports
+mvn site
+```
+
 
 
 
 ## IDE Setup
 
-Just setup like a standard Java application. 
+Just setup like any standard Java application. 
 
 
 
 ## Database Setup
 
-This example can use H2, and MySQL as back-end database. H2 is a file based database, it is mostly used in testing, while MySQL is used in production.
+This example can use H2, and MySQL as back-end database. H2 is a file based database, it is mostly used in testing, while MySQL can be used in production.
 
 The database connection is configured in `application.yml` under the main resources folder `src/main/resources`.
 
@@ -76,7 +85,7 @@ http://localhost:8080/h2-console
 
 ## Deployment
 
-The following steps are for Windows, but they should apply the same to Linux.
+The following steps are for Windows, but they should also apply the same to Linux.
 
 Before deployment, we should have generated the release package `SpringBootAdminLTE-0.0.1-SNAPSHOT.jar` in target folder:
 
@@ -100,8 +109,24 @@ To stop Jetty, just press "Ctrl+C" to terminate the process.
 
 
 
-## Know problems
+## What's Next
 
-1. The "Flash Message" in "layout.html" is not working. When add or delete a customer, it should show a message.
-2. 
+1. Bug: The "Flash Message" in "layout.html" is not working. When add or delete a customer, it should show a message. 
+2. Bug: The Thymeleaf is not able to reload the changed template in development, even with cache been set to disabled in configuration.
+3. Bug: Thymeleaf is complain that 
+4. Feature: Add error handler pages for default error, like 404, 500 etc.
+5. Feature: Support backend DB connection failure and recovery.
+6. Feature: Add a demo for charts (like bar, pie, line etc) using [echart](https://echarts.apache.org).
+7. Feature: Add a chart demo, display the localhost CPU & RAM usage in real time (no need to refresh).
+8. Feature: Add a demo for table using DataTable, with advanced feature like column sorting, searching etc.
+9. Feature: Add a demo for inputting single date values (in ISO format YYYY-MM-DD), using a pop-up date picker. User are also capable of inputting by keyboard.
+10. Feature: Add a demo for inputting date range (begin date plus end date), using a pop-up date picker. User are also capable of inputting by keyboard.
+11. Feature: Add a demo for different kinds of input values (like: single line of text, multi line of text, phone number, email, password, integer value, float value, dropdown single choice, grouped single choice radio-box, grouped multi-choice checkbox, dropdown multi-choice combo-box, file upload, image upload etc.), required to:
+    * Mark some input-box as mandatory.  Submit button is grey (disabled) if these input are empty.
+    * In the controller Java class, we can validate the validate all the input, which can show error beside for each input box after submit. 
+    * When submit button is clicked, it will trigger one POST action, and can prevent been clicked multiple times (it will cause big trouble in backend data processing).
+12. Feature: Enhance the developer_notes documentation.
+13. Feature: Add Spring Security demo, user are required to login for accessing protected URL resources, with user and group permission control, and the data is stored in database.
+14. Feature: Add a game demo, guessing the number (1 to 100).
+15. 
 

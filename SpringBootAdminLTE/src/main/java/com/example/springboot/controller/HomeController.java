@@ -1,4 +1,4 @@
-package com.example.springboot.web;
+package com.example.springboot.controller;
 
 
 import java.text.SimpleDateFormat;
