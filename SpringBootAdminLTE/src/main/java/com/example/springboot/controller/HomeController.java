@@ -26,7 +26,6 @@ public class HomeController {
         mv.addObject("message", "Welcome!");
         mv.addObject("date", SDF.format(new Date()));
         mv.setViewName("home");
-
         return mv;
     }
 	

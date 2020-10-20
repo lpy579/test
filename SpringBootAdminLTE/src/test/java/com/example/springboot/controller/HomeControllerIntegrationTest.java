@@ -44,5 +44,4 @@ public class HomeControllerIntegrationTest {
 				.andExpect(model().attribute("message", "Welcome!"))
 				.andExpect(model().attributeExists("date"));
 	}
-
 }
