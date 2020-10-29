@@ -14,9 +14,8 @@ import com.example.springboot.repository.CustomerRepository;
 
 @Service
 public class CustomerService {
-    private final CustomerRepository repository;
-    public final int PAGE_SIZE = 5;
-    
+	private final CustomerRepository repository;
+
 	/** Default constructor */
 	@Autowired
 	public CustomerService(CustomerRepository repository) {
@@ -24,8 +23,9 @@ public class CustomerService {
 	}
 
 	/** Get list of object in pagination */
-	public Page<Customer> getList(Integer pageNumber) {
-		PageRequest pageRequest = PageRequest.of(pageNumber - 1, PAGE_SIZE, Sort.Direction.ASC, "id");
+	public Page<Customer> getList(int pageNumber, int pageSize) {
+		PageRequest pageRequest = PageRequest.of(pageNumber - 1, pageSize, 
+				Sort.Direction.ASC, "id");
 		return repository.findAll(pageRequest);
 	}
 	
@@ -47,7 +47,7 @@ public class CustomerService {
 	public Customer save(Customer entity) {
 		return repository.save(entity);
 	}
-	
+
 	public long count() {
 		return repository.count();
 	}
@@ -62,7 +62,7 @@ public class CustomerService {
 			repository.deleteById(entityInDb.getId());
 		}
 	}
-	
+
 	public void deleteAll() {
 		repository.deleteAll();
 	}

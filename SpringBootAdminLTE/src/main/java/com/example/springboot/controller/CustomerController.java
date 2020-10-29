@@ -12,9 +12,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.springboot.model.Customer;
 import com.example.springboot.service.CustomerService;
+import com.example.springboot.common.AppConstant;
 
 @Controller
-@RequestMapping("/customer")
+@RequestMapping("/examples/customer")
 public class CustomerController {
     private final CustomerService service;
 
@@ -26,12 +27,12 @@ public class CustomerController {
 
     @GetMapping
     public String index() {
-        return "redirect:/customer/1";
+        return "redirect:/examples/customer/1";
     }
 
     @GetMapping(value = "/{pageNumber}")
     public String list(@PathVariable Integer pageNumber, Model model) {
-        Page<Customer> page = service.getList(pageNumber);
+        Page<Customer> page = service.getList(pageNumber, AppConstant.DEFAULT_PAGE_SIZE);
         int current = page.getNumber() + 1;
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getTotalPages());
@@ -40,32 +41,32 @@ public class CustomerController {
         model.addAttribute("beginIndex", begin);
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
-        return "customer/list";
+        return "examples/customer/list";
     }
 
     @GetMapping("/add")
     public String add(Model model) {
         model.addAttribute("customer", new Customer());
-        return "customer/form";
+        return "examples/customer/form";
     }
 
     @GetMapping("/edit/{id}")
     public String edit(@PathVariable Long id, Model model) {
         model.addAttribute("customer", service.findById(id));
-        return "customer/form";
+        return "examples/customer/form";
     }
 
     @PostMapping(value = "/save")
     public String save(Customer customer, Model model, final RedirectAttributes redirectAttributes) {
         service.save(customer);
         redirectAttributes.addFlashAttribute("successFlash", "Customer was successfully saved.");
-        return "redirect:/customer";
+        return "redirect:/examples/customer";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, Model model, final RedirectAttributes redirectAttributes) {
         service.deleteById(id);
         redirectAttributes.addFlashAttribute("successFlash", "Customer was successfully deleted.");
-        return "redirect:/customer";
+        return "redirect:/examples/customer";
     }
 }

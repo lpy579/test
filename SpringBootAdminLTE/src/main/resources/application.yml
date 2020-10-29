@@ -3,12 +3,13 @@ server:
   servlet:
     context-path: /
 
+
 spring:
   datasource:
+    driver-class-name: org.h2.Driver
     url: jdbc:h2:file:~/h2/SpringBootAdminLTE
     username: sa
     password: 
-    driver-class-name: org.h2.Driver
   h2:
     console:
       enabled: true
@@ -23,6 +24,7 @@ spring:
         dialect: org.hibernate.dialect.H2Dialect
     database: h2
     database-platform: H2
+    open-in-view: true
   flyway:
     enabled: true
     check-location: true
@@ -60,13 +62,15 @@ spring:
       max-request-size: 5MB
       enabled: true
       location: ${java.io.tmpdir}
-    
+
+
 logging:
   pattern:
-    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    console: "%d{yyyy-MM-dd HH:mm:ss} %-5level - %msg%n"
   file:
     name: logs/webapp.log
   level:
     org.springframework.web: WARN
     org.hibernate: ERROR
     com.example.springboot: INFO
+    web: DEBUG

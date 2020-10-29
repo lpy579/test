@@ -112,21 +112,19 @@ To stop Jetty, just press "Ctrl+C" to terminate the process.
 ## What's Next
 
 1. Bug: The "Flash Message" in "layout.html" is not working. When add or delete a customer, it should show a message. 
-2. Bug: The Thymeleaf is not able to reload the changed template in development, even with cache been set to disabled in configuration.
-3. Bug: Thymeleaf is complain that 
-4. Feature: Add error handler pages for default error, like 404, 500 etc.
-5. Feature: Support backend DB connection failure and recovery.
-6. Feature: Add a demo for charts (like bar, pie, line etc) using [echart](https://echarts.apache.org).
-7. Feature: Add a chart demo, display the localhost CPU & RAM usage in real time (no need to refresh).
-8. Feature: Add a demo for table using DataTable, with advanced feature like column sorting, searching etc.
-9. Feature: Add a demo for inputting single date values (in ISO format YYYY-MM-DD), using a pop-up date picker. User are also capable of inputting by keyboard.
-10. Feature: Add a demo for inputting date range (begin date plus end date), using a pop-up date picker. User are also capable of inputting by keyboard.
-11. Feature: Add a demo for different kinds of input values (like: single line of text, multi line of text, phone number, email, password, integer value, float value, dropdown single choice, grouped single choice radio-box, grouped multi-choice checkbox, dropdown multi-choice combo-box, file upload, image upload etc.), required to:
-    * Mark some input-box as mandatory.  Submit button is grey (disabled) if these input are empty.
-    * In the controller Java class, we can validate the validate all the input, which can show error beside for each input box after submit. 
-    * When submit button is clicked, it will trigger one POST action, and can prevent been clicked multiple times (it will cause big trouble in backend data processing).
-12. Feature: Enhance the developer_notes documentation.
-13. Feature: Add Spring Security demo, user are required to login for accessing protected URL resources, with user and group permission control, and the data is stored in database.
-14. Feature: Add a game demo, guessing the number (1 to 100).
-15. 
+2. Feature: Add error handler pages for default error, like 404, 500 etc.
+3. Feature: Support backend DB connection failure and recovery.
+4. Feature: Add a demo for charts (like bar, pie, line etc.) using [echart](https://echarts.apache.org).  **<-- Done! Do not choose!**
+5. Feature: Add a chart demo, display the localhost CPU & RAM usage in real time (background update, no page refresh needed).
+6. Feature: Add a demo for displaying tables, including using [DataTables](https://www.datatables.net/), [jsGrid](http://js-grid.com/), with advanced features like sorting, filtering, data editing, validation etc.
+7. Feature: Add a demo for inputting single date values (in ISO format YYYY-MM-DD), using a pop-up date picker. User are also capable of inputting by keyboard.
+8. Feature: Add a demo for inputting date range (begin date plus end date), using a pop-up date picker. User are also capable of inputting by keyboard.
+9. Feature: Add a demo for different kinds of input values (like: single line of text, multi line of text, phone number, email, password, integer value, float value, dropdown single choice, grouped single choice radio-box, grouped multi-choice checkbox, dropdown multi-choice combo-box, file upload, image upload etc.), required to:
+   * Mark some input-box as mandatory.  Submit button is grey (disabled) if these input are empty.
+   * In the controller Java class, we can validate the validate all the input, which can show error beside for each input box after submit. 
+   * When submit button is clicked, it will trigger one POST action, and can prevent been clicked multiple times (it will cause big trouble in backend data processing).
+10. Feature: Add Spring Security demo, user are required to login for accessing protected URL resources, with user and group permission control, and the data is stored in database.
+11. Feature: Add a game demo, guessing the number (1 to 100).
+
+
 
