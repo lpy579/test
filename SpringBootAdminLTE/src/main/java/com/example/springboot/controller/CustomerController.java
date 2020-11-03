@@ -60,13 +60,13 @@ public class CustomerController {
     public String save(Customer customer, Model model, final RedirectAttributes redirectAttributes) {
         service.save(customer);
         redirectAttributes.addFlashAttribute("successFlash", "Customer was successfully saved.");
-        return "redirect:/examples/customer";
+        return "redirect:/examples/customer/1";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, Model model, final RedirectAttributes redirectAttributes) {
         service.deleteById(id);
         redirectAttributes.addFlashAttribute("successFlash", "Customer was successfully deleted.");
-        return "redirect:/examples/customer";
+        return "redirect:/examples/customer/1";
     }
 }

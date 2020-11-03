@@ -111,7 +111,7 @@ To stop Jetty, just press "Ctrl+C" to terminate the process.
 
 ## What's Next
 
-1. Bug: The "Flash Message" in "layout.html" is not working. When add or delete a customer, it should show a message. 
+1. Bug: The "Flash Message" in "layout.html" is not working. When add or delete a customer, it should show a message.  **<-- Done! Do not choose!**
 2. Feature: Add error handler pages for default error, like 404, 500 etc.
 3. Feature: Support backend DB connection failure and recovery.
 4. Feature: Add a demo for charts (like bar, pie, line etc.) using [echart](https://echarts.apache.org).  **<-- Done! Do not choose!**

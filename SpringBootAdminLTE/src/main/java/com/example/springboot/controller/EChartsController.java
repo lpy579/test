@@ -158,6 +158,12 @@ public class EChartsController {
 		return "examples/echarts/treemap";
 	}
 	
+	/**
+	 * JSON API example.
+	 * http://localhost:8080/examples/echarts/barchart0.json
+	 * 
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("/barchart0.json")
 	public GsonOption barChartData0() {
@@ -165,6 +171,12 @@ public class EChartsController {
 		return optChart0;
 	}
 	
+	/**
+	 * JSON API example.
+	 * http://localhost:8080/examples/echarts/barchart1.json
+	 * 
+	 * @return
+	 */
 	@ResponseBody
 	@GetMapping("/barchart1.json")
 	public GsonOption barChartData1() {
