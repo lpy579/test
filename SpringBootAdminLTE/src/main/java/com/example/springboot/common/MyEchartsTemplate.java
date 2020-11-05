@@ -1,5 +1,14 @@
 package com.example.springboot.common;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.apache.commons.lang3.SystemUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -7,6 +16,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import com.github.abel533.echarts.Option;
 import com.github.abel533.echarts.json.GsonUtil;
+import com.github.abel533.echarts.json.OptionUtil;
 
 /**
  * Generate ECharts HTML using Thymeleaf template engine.
@@ -45,30 +55,61 @@ public class MyEchartsTemplate {
 		engine.setTemplateResolver(templateResolver);
 	}
 
-	protected String generateChartHtmlUsingTemplate(String templateName, String chartId, int chartWidth,
-			int chartHeight, Option chartOption) {
+	/**
+	 * Generate only the chart Javascript.
+	 * 
+	 * @param chartId     The chartId of the <div> place-holder in the HTML.
+	 * @param chartOption The ECharts option object.
+	 * @return Javascript that can be embedded into HTML.
+	 */
+	public String generateChartJS(String chartId, Option chartOption) {
 		String chartOptionJson = GsonUtil.format(chartOption);
 
 		Context context = new Context();
 		context.setVariable("chartId", chartId);
-		context.setVariable("chartWidth", chartWidth);
-		context.setVariable("chartHeight", chartHeight);
 		context.setVariable("chartOptionJson", chartOptionJson);
 
-		return engine.process(templateName, context);
+		return engine.process(TEMPLATE_SIMPLE_001, context);
 	}
 
 	/**
-	 * Generate only the chart tags (to be embedded into HTML).
+	 * Generate the whole chart HTML, easy for preview.
+	 * 
+	 * @param The ECharts option object.
+	 * @return HTML with the ECharts embedded.
 	 */
-	public String generateChartTag(String chartId, int chartWidth, int chartHeight, Option chartOption) {
-		return generateChartHtmlUsingTemplate(TEMPLATE_SIMPLE_001, chartId, chartWidth, chartHeight, chartOption);
+	public String generateChartHTML(Option chartOption) {
+		String chartOptionJson = GsonUtil.format(chartOption);
+
+		Context context = new Context();
+		context.setVariable("chartId", "chart1");
+		context.setVariable("chartOptionJson", chartOptionJson);
+
+		return engine.process(TEMPLATE_SIMPLE_002, context);
 	}
 
 	/**
-	 * Generate the chart HTML, easily to view in browser.
+	 * Save the chart HTML into a temporary file, and open browser to view it.
+	 * 
+	 * @param chartOption The ECharts option object.
+	 * @throws Exception
 	 */
-	public String generateChartHTML(String chartId, int chartWidth, int chartHeight, Option chartOption) {
-		return generateChartHtmlUsingTemplate(TEMPLATE_SIMPLE_002, chartId, chartWidth, chartHeight, chartOption);
+	public void preview(Option chartOption) throws Exception {
+		// generate a temporary file.
+		String fileName = "EChartsPreview" + System.currentTimeMillis() + ".html";
+		Path filePath = Paths.get(System.getProperty("java.io.tmpdir"), fileName);
+		String tempHtmlFile = filePath.toString();
+		// System.out.println(tempHtmlFile);
+
+		// write the HTML content into that file.
+		File htmlFile = new File(tempHtmlFile);
+		try (OutputStream os = new FileOutputStream(htmlFile);
+				Writer w = new OutputStreamWriter(os, StandardCharsets.UTF_8)) {
+			String htmlContent = generateChartHTML(chartOption);
+			w.write(htmlContent);
+		}
+
+		// open browser to view that file.
+		OptionUtil.browse(tempHtmlFile);
 	}
 }

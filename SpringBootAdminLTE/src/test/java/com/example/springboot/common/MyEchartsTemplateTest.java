@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.github.abel533.echarts.axis.CategoryAxis;
@@ -72,16 +73,16 @@ class MyEchartsTemplateTest {
 	}
 
 	@Test
-	void testGenerateBarChartTag() {
+	void testGenerateBarChartJS() {
 		GsonOption chartOption = getBarChart1(true);
 
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart1", 500, 400, chartOption);
-		// System.out.println(tag);
-
-		Assertions.assertTrue(tag.contains("<div id=\"chart1\" style=\"width:500px; height:400px\"></div>"));
-		Assertions.assertTrue(tag.contains("\"title\": {\"text\": \"地市数据\"}"));
-		Assertions.assertTrue(tag.contains("\"data\": [\"广州\",\"深圳\",\"珠海\",\"汕头\",\"韶关\",\"佛山\"]"));
+		String js = template.generateChartJS("chart1", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("<script type=\"text/javascript\">"));
+		Assertions.assertTrue(js.contains("\"title\": {\"text\": \"地市数据\"}"));
+		Assertions.assertTrue(js.contains("\"data\": [\"广州\",\"深圳\",\"珠海\",\"汕头\",\"韶关\",\"佛山\"]"));
+		Assertions.assertTrue(js.contains("</script>"));
 	}
 
 	@Test
@@ -89,13 +90,26 @@ class MyEchartsTemplateTest {
 		GsonOption chartOption = getBarChart1(true);
 
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String html = template.generateChartHTML("chart1", 500, 400, chartOption);
-		// System.out.println(html);
-
+		String html = template.generateChartHTML(chartOption);
+		//System.out.println(html);
 		Assertions.assertTrue(html.contains("<html>"));
-		Assertions.assertTrue(html.contains("<div id=\"chart1\" style=\"width:500px; height:400px\"></div>"));
+		Assertions.assertTrue(html.contains("<script type=\"text/javascript\">"));
 		Assertions.assertTrue(html.contains("\"title\": {\"text\": \"地市数据\"}"));
 		Assertions.assertTrue(html.contains("\"data\": [\"广州\",\"深圳\",\"珠海\",\"汕头\",\"韶关\",\"佛山\"]"));
-		Assertions.assertTrue(html.contains("</body>"));
+		Assertions.assertTrue(html.contains("</script>"));
+		Assertions.assertTrue(html.contains("</html>"));
+	}
+	
+	@Test
+	@Disabled
+	void testPreview() {
+		GsonOption chartOption = getBarChart1(true);
+		MyEchartsTemplate template = new MyEchartsTemplate();
+		try {
+			template.preview(chartOption);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

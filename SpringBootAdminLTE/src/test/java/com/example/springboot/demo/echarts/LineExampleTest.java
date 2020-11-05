@@ -12,46 +12,45 @@ class LineExampleTest {
 	void testGetChart1() {
 		GsonOption chartOption = LineExample.getChart1();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart1", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart1\" style=\"width:500px; height:400px\"></div>"));
+		String js = template.generateChartJS("chart1", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("\"data\": [\"邮件营销\",\"联盟广告\",\"直接访问\",\"搜索引擎\"]"));
 	}
 
 	@Test
 	void testGetChart3() {
 		GsonOption chartOption = LineExample.getChart3();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart3", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart3\" style=\"width:500px; height:400px\"></div>"));
+		String js = template.generateChartJS("chart3", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("\"title\": {\"text\": \"某楼盘销售情况\",\"subtext\": \"纯属虚构\"}"));
 	}
 
 	@Test
 	void testGetChart5() {
 		GsonOption chartOption = LineExample.getChart5();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart5", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart5\" style=\"width:500px; height:400px\"></div>"));
+		String js = template.generateChartJS("chart5", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("echarts.init(document.getElementById(\"chart5\"));"));
 	}
 
 	@Test
 	void testGetChart6() {
 		GsonOption chartOption = LineExample.getChart6();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart6", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart6\" style=\"width:500px; height:400px\"></div>"));
+		String js = template.generateChartJS("chart6", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("echarts.init(document.getElementById(\"chart6\"));"));
 	}
 
 	@Test
 	void testGetChart9() {
 		GsonOption chartOption = LineExample.getChart9();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart9", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart9\" style=\"width:500px; height:400px\"></div>"));
+		String js = template.generateChartJS("chart9", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("echarts.init(document.getElementById(\"chart9\"));"));
 
 	}
-
 }

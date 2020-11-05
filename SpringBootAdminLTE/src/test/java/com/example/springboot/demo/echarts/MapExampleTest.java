@@ -12,9 +12,9 @@ class MapExampleTest {
 	void testGetChart1() {
 		GsonOption chartOption = MapExample.getChart1();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart1", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart1\" style=\"width:500px; height:400px\"></div>"));
+		String js = template.generateChartJS("chart1", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("echarts.init(document.getElementById(\"chart1\"));"));
 	}
 
 }

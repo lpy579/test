@@ -1,5 +1,4 @@
-<div th:id="${chartId}" th:style="'width:'+@{${chartWidth}}+'px; height:'+@{${chartHeight}}+'px'"></div>
-<script th:inline="javascript">
+<script type="text/javascript" th:inline="javascript">
 var myChart = echarts.init(document.getElementById([[${chartId}]]));
 var myChartOption = [(${chartOptionJson})];
 myChart.setOption(myChartOption);

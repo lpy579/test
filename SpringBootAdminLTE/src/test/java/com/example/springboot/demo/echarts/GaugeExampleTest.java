@@ -12,10 +12,9 @@ class GaugeExampleTest {
 	void testGetChart1() {
 		GsonOption chartOption = GaugeExample.getChart1();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart1", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart1\" style=\"width:500px; height:400px\"></div>"));
-		Assertions.assertTrue(tag.contains("\"data\": [{\"name\": \"完成率\",\"value\": 75}]"));
+		String js = template.generateChartJS("chart1", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("\"data\": [{\"name\": \"完成率\",\"value\": 75}]"));
 	}
 
 }

@@ -12,18 +12,18 @@ class PieExampleTest {
 	void testGetChart6() {
 		GsonOption chartOption = PieExample.getChart6();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart6", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart6\" style=\"width:500px; height:400px\"></div>"));
+		String js = template.generateChartJS("chart6", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("echarts.init(document.getElementById(\"chart6\"));"));
 	}
 
 	@Test
 	void testGetChart7() {
 		GsonOption chartOption = PieExample.getChart7();
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String tag = template.generateChartTag("chart7", 500, 400, chartOption);
-		//System.out.println(tag);
-		Assertions.assertTrue(tag.contains("<div id=\"chart7\" style=\"width:500px; height:400px\"></div>"));
+		String js = template.generateChartJS("chart7", chartOption);
+		//System.out.println(js);
+		Assertions.assertTrue(js.contains("echarts.init(document.getElementById(\"chart7\"));"));
 	}
 
 }
