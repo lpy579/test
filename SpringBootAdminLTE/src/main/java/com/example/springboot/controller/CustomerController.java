@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.springboot.config.AppConstant;
 import com.example.springboot.model.Customer;
 import com.example.springboot.service.CustomerService;
-import com.example.springboot.common.AppConstant;
 
 @Controller
 @RequestMapping("/examples/customer")
@@ -27,11 +27,15 @@ public class CustomerController {
 
     @GetMapping
     public String index() {
-        return "redirect:/examples/customer/1";
+        return "redirect:/examples/customer/";
     }
 
-    @GetMapping(value = "/{pageNumber}")
-    public String list(@PathVariable Integer pageNumber, Model model) {
+    @GetMapping(value = {"/", "/{pageNumber}"})
+    public String list(@PathVariable(required = false) Integer pageNumber, Model model) {
+    	if (pageNumber == null) {
+    		pageNumber = 1;
+    	}
+    	
         Page<Customer> page = service.getList(pageNumber, AppConstant.DEFAULT_PAGE_SIZE);
         int current = page.getNumber() + 1;
         int begin = Math.max(1, current - 5);
@@ -60,13 +64,13 @@ public class CustomerController {
     public String save(Customer customer, Model model, final RedirectAttributes redirectAttributes) {
         service.save(customer);
         redirectAttributes.addFlashAttribute("successFlash", "Customer was successfully saved.");
-        return "redirect:/examples/customer/1";
+        return "redirect:/examples/customer";
     }
 
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id, Model model, final RedirectAttributes redirectAttributes) {
         service.deleteById(id);
         redirectAttributes.addFlashAttribute("successFlash", "Customer was successfully deleted.");
-        return "redirect:/examples/customer/1";
+        return "redirect:/examples/customer";
     }
 }

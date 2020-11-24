@@ -115,6 +115,8 @@ To stop Jetty, just press "Ctrl+C" to terminate the process.
 
 2. Feature: Add error handler pages for default error, like 404, 500 etc.
 
+   * [Displaying a Custom Error Page in Spring Boot](https://attacomsian.com/blog/spring-boot-custom-error-page)
+
 3. Feature: Support backend DB connection failure and recovery.
 
 4. Feature: Add a demo for charts (like bar, pie, line etc.) using [echart](https://echarts.apache.org).  **<-- Done! Do not choose!**

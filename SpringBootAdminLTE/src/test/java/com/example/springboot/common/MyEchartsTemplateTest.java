@@ -90,7 +90,7 @@ class MyEchartsTemplateTest {
 		GsonOption chartOption = getBarChart1(true);
 
 		MyEchartsTemplate template = new MyEchartsTemplate();
-		String html = template.generateChartHTML(chartOption);
+		String html = template.generateHTML(chartOption);
 		//System.out.println(html);
 		Assertions.assertTrue(html.contains("<html>"));
 		Assertions.assertTrue(html.contains("<script type=\"text/javascript\">"));
@@ -108,7 +108,6 @@ class MyEchartsTemplateTest {
 		try {
 			template.preview(chartOption);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

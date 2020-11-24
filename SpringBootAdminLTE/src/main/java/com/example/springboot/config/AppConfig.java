@@ -1,11 +1,17 @@
-package com.example.springboot.common;
+package com.example.springboot.config;
 
 import java.io.IOException;
+import java.util.TimeZone;
 
+import javax.annotation.PostConstruct;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.http.converter.json.Jackson2ObjectMapperBuilder;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -16,7 +22,22 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 
 @Configuration
+@EnableJpaRepositories(basePackages = "com.example.springboot.repository.jpa")
 public class AppConfig {
+	private static final Logger logger = LoggerFactory.getLogger(AppConfig.class);
+	
+	/**
+	 * Spring Boot: Time Zone configuration using Hibernate
+	 * https://aboullaite.me/spring-boot-time-zone-configuration-using-hibernate/
+	 */
+	@PostConstruct
+	void started() {
+		// Set UTC as system default time zone, used by Hibernate JPA.
+		TimeZone tzUTC = TimeZone.getTimeZone("UTC");
+		TimeZone.setDefault(tzUTC);
+		logger.info("Set system default timezone to UTC, used by Hibernate JPA.");
+	}
+	
 	@Bean
     @Primary
     @ConditionalOnMissingBean(ObjectMapper.class)

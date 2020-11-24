@@ -1,4 +1,4 @@
-package com.example.springboot.repository;
+package com.example.springboot.repository.jpa;
 
 
 import java.util.Optional;

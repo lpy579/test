@@ -1,8 +1,12 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" 
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
 <head>
+    <meta charset="UTF-8">
     <title>ECharts Demo - Bar</title>
+    
+    <!-- ECharts, https://echarts.apache.org/examples/vendors/echarts/ -->
+    <script th:src="@{/plugins/echarts/echarts-all-3.js}"></script>
 </head>
 <body>
 
@@ -38,13 +42,33 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="/examples/customer" class="nav-link">
+                <a th:href="@{/examples/customer}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i><p>Customer</p>
                 </a>
               </li>
             </ul>
           </li>
           
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Table<i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a th:href="@{/examples/table/datatable}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i><p>DataTables</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/examples/table/tablesaw}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i><p>Tablesaw</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+           
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link active">
               <i class="nav-icon fas fa-chart-pie"></i>
@@ -126,7 +150,7 @@
     <!-- /.sidebar -->
 </aside>
 
-<section class="content-header" layout:fragment="ContentHeader">
+<section layout:fragment="ContentHeader">
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">

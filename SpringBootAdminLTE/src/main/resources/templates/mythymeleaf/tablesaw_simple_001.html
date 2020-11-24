@@ -1,0 +1,14 @@
+<table th:id="${tableId}" class="table table-bordered">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td th:each="columnName : ${tableColumnNameList}" th:text="${columnName}">columnName</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="rowData, iterStat : ${tableData}">
+      <td th:text="${iterStat.index + 1}">1</td>
+      <td th:each="objValue : ${rowData}" th:text="${objValue}">objValue</td>
+    </tr>
+  </tbody>
+</table>

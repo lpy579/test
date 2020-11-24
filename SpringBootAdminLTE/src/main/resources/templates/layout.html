@@ -53,16 +53,9 @@
   <!-- Summernote -->
   <script th:src="@{/plugins/summernote/summernote-bs4.min.js}"></script>
   <!-- overlayScrollbars -->
-  <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script>
-
-  <!-- ECharts, https://www.bootcdn.cn/echarts/ -->
-  <script src="https://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
-  <script src="https://echarts.apache.org/examples/vendors/echarts/map/js/china.js"></script>
-  <script src="https://echarts.apache.org/examples/vendors/echarts/map/js/china-contour.js"></script>
-  <!-- 
-  <script src="https://echarts.apache.org/examples/vendors/echarts/map/js/world.js"></script>
-  -->
+  <script th:src="@{/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js}"></script> 
 </head>
+
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
 <div class="wrapper">
   <!-- Navbar -->
@@ -70,13 +63,13 @@
   <!-- /.navbar -->
   
   <!-- Main Sidebar Container -->
-  <div class="main-sidebar sidebar-dark-primary elevation-4" layout:fragment="MainSidebar"></div>
+  <div class="main-sidebar sidebar-dark-primary elevation-4" layout:fragment="MainSidebar">MainSidebar</div>
   <!-- /.main-sidebar -->
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header" layout:fragment="ContentHeader"></section>
+    <section class="content-header" layout:fragment="ContentHeader">ContentHeader</section>
     <!-- /.content-header -->
 
     <!-- Flash Message -->
@@ -95,7 +88,7 @@
     <!-- /.flash-message -->
 
     <!-- Main content -->
-    <div layout:fragment="ContentBody"></div>
+    <div layout:fragment="ContentBody">ContentBody</div>
     <!-- /.content-body -->
   </div>
   <!-- /.content-wrapper -->
@@ -111,11 +104,15 @@
 <!-- ./wrapper -->
 
 
+<!-- jQuery -->
+<script th:src="@{/plugins/jquery/jquery.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
 <!-- AdminLTE App -->
-<script th:src="@{/dist/js/adminlte.js}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script th:src="@{/dist/js/pages/dashboard.js}"></script>
-<!-- AdminLTE for demo purposes -->
-<script th:src="@{/dist/js/demo.js}"></script>
+<script th:src="@{/dist/js/adminlte.min.js}"></script>
+
+<!-- Content Body JS -->
+<object layout:fragment="ContentBodyJS" th:remove="tag"></object>
+<!-- /.content-body-js -->
 </body>
 </html>

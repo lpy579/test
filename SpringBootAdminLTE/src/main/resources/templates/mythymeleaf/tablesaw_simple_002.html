@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tablesaw</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+  
+  <!-- Font Awesome    https://www.cdnpkg.com/, https://www.bootstrapcdn.com/fontawesome/ -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/fontawesome.min.css" />
+  <!-- Bootstrap    https://www.bootstrapcdn.com/, https://www.cdnpkg.com/bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+  
+  <!-- CSS - JQuery, DataTables -->
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css" />
+</head>
+<body>
+
+<table th:id="${tableId}" class="table table-bordered">
+  <thead>
+    <tr>
+      <td>#</td>
+      <td th:each="columnName : ${tableColumnNameList}" th:text="${columnName}">columnName</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="rowData, iterStat : ${tableData}">
+      <td th:text="${iterStat.index + 1}">1</td>
+      <td th:each="objValue : ${rowData}" th:text="${objValue}">objValue</td>
+    </tr>
+  </tbody>
+</table>
+
+<!-- JS - JQuery, DataTables 
+https://www.bootcdn.cn
+-->
+<script type="text/javascript" language="javascript" src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript" language="javascript" src="https://cdn.bootcdn.net/ajax/libs/datatables.net/1.10.22/jquery.dataTables.min.js"></script>
+
+<script type="text/javascript" th:inline="javascript">
+  $(function () {
+	$('#[(${tableId})]').DataTable(
+	  {
+		"paging":   true,
+		"ordering": true,
+		"info":     true,
+		"language": {
+		  "sProcessing": "处理中...",
+		  "sLengthMenu": "显示 _MENU_ 项结果",
+		  "sZeroRecords": "没有匹配结果",
+		  "sInfo": "显示第 _START_ 至 _END_ 项结果，共 _TOTAL_ 项",
+		  "sInfoEmpty": "显示第 0 至 0 项结果，共 0 项",
+		  "sInfoFiltered": "(由 _MAX_ 项结果过滤)",
+		  "sInfoPostFix": "",
+		  "sSearch": "搜索:",
+		  "sUrl": "",
+		  "sEmptyTable": "表中数据为空",
+		  "sLoadingRecords": "载入中...",
+		  "sInfoThousands": ",",
+		  "oPaginate": {
+			"sFirst": "首页",
+			"sPrevious": "上页",
+			"sNext": "下页",
+			"sLast": "末页"
+		  },
+		  "oAria": {
+			"sSortAscending": ": 以升序排列此列",
+			"sSortDescending": ": 以降序排列此列"
+		  }
+		}
+	  }
+	);
+  });
+</script>   
+
+</body>
+</html>

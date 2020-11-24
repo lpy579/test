@@ -22,6 +22,8 @@ spring:
       hibernate:
         format_sql: true
         dialect: org.hibernate.dialect.H2Dialect
+        jdbc:
+          time_zone: UTC
     database: h2
     database-platform: H2
     open-in-view: true

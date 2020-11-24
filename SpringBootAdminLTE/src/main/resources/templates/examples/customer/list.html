@@ -47,6 +47,26 @@
           
           <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>Table<i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a th:href="@{/examples/table/datatable}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i><p>DataTables</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a th:href="@{/examples/table/tablesaw}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i><p>Tablesaw</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+           
+          <li class="nav-item has-treeview menu-open">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>ECharts<i class="right fas fa-angle-left"></i>
               </p>
@@ -158,6 +178,7 @@
               <!-- /.card-header -->
               <div class="card-body table-responsive p-0">
                 <table class="table table-bordered">
+                  <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
@@ -165,6 +186,8 @@
                         <th>Registration Date</th>
                         <th>Action</th>
                     </tr>
+                  </thead>
+                  <tbody>
                     <tr th:each="row : ${list}">
                         <td th:text="${row.id}"></td>
                         <td th:text="${row.firstname + ' ' + row.lastname}"></td>
@@ -174,6 +197,7 @@
                             <a th:href="${'/examples/customer/edit/' + row.id}">Edit</a> | <a th:href="${'/examples/customer/delete/' + row.id}">Delete</a>
                         </td>
                     </tr>
+                  <tbody>
                 </table>
               </div>
               <!-- /.card-body -->

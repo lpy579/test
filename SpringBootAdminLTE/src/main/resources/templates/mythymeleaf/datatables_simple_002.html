@@ -1,0 +1,8 @@
+<!-- DataTables -->
+<script th:inline="javascript" th:each="entry, stats : ${tableOptJsonMap}" th:with="tableOptJson=${entry.value}">
+  $(function () {
+    $('#[(${entry.key})]').DataTable(
+      [(${tableOptJson})]
+    );
+  });
+</script>
