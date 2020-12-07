@@ -1,8 +1,10 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout">
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" 
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
-    <title>Customer Registration</title>
+    <meta charset="UTF-8">
+    <title>Security</title>
 </head>
 <body>
 
@@ -31,14 +33,14 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link active">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>User Management<i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="#" class="nav-link active">
+                <a th:href="@{/examples/customer}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i><p>Customer</p>
                 </a>
               </li>
@@ -64,16 +66,16 @@
               </li>
             </ul>
           </li>
- 
+
           <li class="nav-item has-treeview menu-open">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
+            <a href="#" class="nav-link active">
+              <i class="nav-icon fas fa-edit"></i>
               <p>Security<i class="right fas fa-angle-left"></i>
               </p>
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a th:href="@{/examples/security/protected1}" class="nav-link">
+                <a th:href="@{/examples/security/protected1}" class="nav-link active">
                   <i class="far fa-circle nav-icon"></i><p>Protected1</p>
                 </a>
               </li>
@@ -84,8 +86,8 @@
               </li>
             </ul>
           </li>
- 
-           <li class="nav-item has-treeview menu-open">
+          
+          <li class="nav-item has-treeview menu-open">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>ECharts<i class="right fas fa-angle-left"></i>
@@ -166,67 +168,53 @@
     <!-- /.sidebar -->
 </aside>
 
-<section class="content-header" layout:fragment="ContentHeader">
+<section layout:fragment="ContentHeader">
   <div class="container-fluid">
-	<div class="row mb-2">
-	  <div class="col-sm-6">
-		<h1>Customer Registration</h1>
-	  </div>
-	  <div class="col-sm-6">
-		<ol class="breadcrumb float-sm-right">
-		  <li class="breadcrumb-item"><a href="/examples/customer">Home</a></li>
-		  <li class="breadcrumb-item active">User Management</li>
-		</ol>
-	  </div>
-	</div>
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1>Security</h1>
+      </div>
+      <div class="col-sm-6">
+        <ol class="breadcrumb float-sm-right">
+          <li class="breadcrumb-item"><a href="/examples/security">Home</a></li>
+          <li class="breadcrumb-item active">Security</li>
+        </ol>
+      </div>
+    </div>
   </div>
 </section>
 
 <div layout:fragment="ContentBody">
     <div class="content">
       <div class="container-fluid">
+      
         <div class="row">
           <div class="col-12">
-            
-			<!-- general form elements -->
-            <div class="card card-primary">
+            <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Form</h3>
-				<div class="card-tools float-right">
-					<a href="/customer" type="button" class="btn btn-group"><i class="fa fa-list-ul"></i></a>
-				</div>
+                <h3 class="card-title">SpringBoot Security</h3>
               </div>
               <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" data-toggle="validator" th:object="${customer}" th:action="@{/examples/customer/save}" method="post">
-			    <input type="hidden" id="id" th:field="*{id}"/>
-                <div class="card-body">
-                  <div class="form-group">
-                    <label for="inputFirstname">Firstname</label>
-                    <input type="text" class="form-control" id="firstname" th:field="*{firstname}" placeholder="Enter Firstname" required="true">
-                  </div>
-                  <div class="form-group">
-                    <label for="inputLastname">Lastname</label>
-                    <input type="text" class="form-control" id="lastname" th:field="*{lastname}" placeholder="Enter Lastname" required="true">
-                  </div>
-                  <div class="form-group">
-                    <label for="inputEmail">Email address</label>
-                    <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Enter email" required="true">
-                  </div>
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Save</button>
-				  <button type="button" class="btn btn-secondary" onClick="history.back();">Back</button>
-                </div>
-              </form>
+              <div class="card-body table-responsive p-0">
+                  <p>
+                  This is a restricted area, only authenticated user with USER role can view this page.
+                  </p>
+                  <p th:text="${message}">message</p>
+                  <p>
+	                  <span sec:authorize="isAuthenticated()" style="display: inline-block;">
+	                    | Logged user: <span sec:authentication="name"></span> |
+	                    Roles: <span sec:authentication="principal.authorities"></span> |
+	                    <a th:href="@{/logout}">Sign Out</a>
+	                  </span>
+				  </p>
+			  </div>
+              <!-- /.card-body -->
             </div>
             <!-- /.card -->
-			
           </div>
         </div>
         <!-- /.row -->
+
       </div><!-- /.container-fluid -->
     </div>
 </div>

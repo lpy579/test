@@ -33,4 +33,14 @@ public class HomeController {
     public String starter() {
         return "starter";
     }
+	
+	@GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @GetMapping("/error/access-denied")
+    public String accessDenied() {
+        return "/error/access-denied";
+    }
 }

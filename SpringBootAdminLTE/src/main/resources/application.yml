@@ -46,18 +46,15 @@ spring:
     # excluded-view-names:
     # template-resolver-order:
     # view-names:
-    servlet:
-      content-type: text/html
   devtools:
     livereload:
       enabled: true
     add-properties: true
-  resources:
-    static-locations: classpath:/static/
-    # static-locations: file:src/main/resources/static/
-    # static-locations: ${project.basedir}/src/main/resources/static/
-    cache:
-      period: 0
+  web:
+    resources:
+      static-locations: classpath:/static/      # static-locations: file:src/main/resources/static/
+      # static-locations: ${project.basedir}/src/main/resources/static/
+      cache:        period: 0 
   servlet:
     multipart:
       max-file-size: 5MB
@@ -65,14 +62,14 @@ spring:
       enabled: true
       location: ${java.io.tmpdir}
 
-
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} %-5level - %msg%n"
   file:
     name: logs/webapp.log
   level:
+    root: WARN
     org.springframework.web: WARN
+    org.springframework.security: INFO
     org.hibernate: ERROR
     com.example.springboot: INFO
-    web: DEBUG

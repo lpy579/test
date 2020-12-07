@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="x-ua-compatible" content="ie=edge" />
+
+  <link rel="shortcut icon" type="image/x-icon" th:href="@{asset/img/favicon.ico.png}" />
+  <title>SpringBootAdminLTE - Error</title>
+</head>
+<body>
+<div style="text-align:center;">
+
+    <h1>Error: Access Denied</h1>
+    <img th:src="@{/asset/img/access-denied.jpg}" />
+    
+    <p>
+        You are not allowed to view this protected page. 
+    </p>
+    <form>
+	  <input type="button" value="Go back!" onclick="history.back()">
+	</form>
+
+</div>
+</body>
+</html>
