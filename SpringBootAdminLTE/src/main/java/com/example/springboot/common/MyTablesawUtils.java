@@ -20,7 +20,7 @@ public class MyTablesawUtils {
 	 * @param table A Tablesaw object.
 	 * @return List of String.
 	 */
-	public static List<String> getTablesawColumNameList(Table table) {
+	public static List<String> getTablesawColumNameList(final Table table) {
 		List<String> columnNameList = table.columnNames();
 		return columnNameList;
 	}
@@ -31,7 +31,7 @@ public class MyTablesawUtils {
 	 * @param table A Tablesaw object.
 	 * @return List of ColumnType.
 	 */
-	public static List<ColumnType> getTablesawColumTypeList(Table table) {
+	public static List<ColumnType> getTablesawColumTypeList(final Table table) {
 		ColumnType[] columnTypes = table.columnTypes();
 
 		List<ColumnType> columnTypeList = new ArrayList<>();
@@ -51,7 +51,7 @@ public class MyTablesawUtils {
 	 * @param rowIndex A zero based row index.
 	 * @return
 	 */
-	public static List<Object> getTablesawRowData(Table table, int rowIndex) {
+	public static List<Object> getTablesawRowData(final Table table, int rowIndex) {
 		List<Object> rowData = new ArrayList<>();
 
 		for (int columnIndex = 0; columnIndex < table.columnCount(); ++columnIndex) {
@@ -68,7 +68,7 @@ public class MyTablesawUtils {
 	 * @param table A Tablesaw object.
 	 * @return List of each row of data.
 	 */
-	public static List<List<Object>> getTablesawData(Table table) {
+	public static List<List<Object>> getTablesawData(final Table table) {
 		List<List<Object>> data = new ArrayList<>(new ArrayList<>());
 
 		for (int rowIndex = 0; rowIndex < table.rowCount(); ++rowIndex) {
@@ -86,7 +86,7 @@ public class MyTablesawUtils {
 	 * @param rowIndex  A zero based row index.
 	 * @param separator A separator string.
 	 */
-	public static String tablesawRowDataToString(Table table, int rowIndex, String separator) {
+	public static String tablesawRowDataToString(final Table table, int rowIndex, String separator) {
 		List<Object> rowData = getTablesawRowData(table, rowIndex);
 		String strRow = rowData.stream().map(Object::toString).collect(Collectors.joining(separator));
 		return strRow;

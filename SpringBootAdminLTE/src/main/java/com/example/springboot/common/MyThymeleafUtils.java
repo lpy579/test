@@ -1,6 +1,5 @@
 package com.example.springboot.common;
 
-import org.apache.commons.lang3.SystemUtils;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
@@ -10,30 +9,26 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
  * @author bobyuan
  */
 public class MyThymeleafUtils {
+	/** The template path under resources folder */
+	public static final String TEMPLATE_PREFIX = "templates/mythymeleaf/";
+
+	/** The template file extension */
+	public static final String TEMPLATE_SUFFIX = ".html";
 
 	/**
 	 * Create a new TemplateEngine, it will specify the template resources.
 	 * 
-	 * @return
+	 * @param enableCache Set to true in production.
+	 * @return A Thymeleaf template engine.
 	 */
-	public static TemplateEngine newTemplateEngine() {
-		final String TEMPLATE_PREFIX = "templates/mythymeleaf/";
-		final String TEMPLATE_SUFFIX = ".html";
-
+	public static TemplateEngine newTemplateEngine(boolean enableCache) {
 		ClassLoaderTemplateResolver templateResolver = new ClassLoaderTemplateResolver();
 
 		// set the template location in resources.
 		templateResolver.setPrefix(TEMPLATE_PREFIX);
 		templateResolver.setSuffix(TEMPLATE_SUFFIX);
 		templateResolver.setTemplateMode("HTML");
-
-		if (SystemUtils.IS_OS_WINDOWS) {
-			// Windows is for development, set to false.
-			templateResolver.setCacheable(false);
-		} else {
-			// For production environment, set to true.
-			templateResolver.setCacheable(true);
-		}
+		templateResolver.setCacheable(enableCache);
 
 		// initialize the Thymeleaf template engine.
 		TemplateEngine engine = new TemplateEngine();
@@ -41,5 +36,4 @@ public class MyThymeleafUtils {
 
 		return engine;
 	}
-
 }

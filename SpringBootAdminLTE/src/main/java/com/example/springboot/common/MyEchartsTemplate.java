@@ -3,6 +3,7 @@ package com.example.springboot.common;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import com.example.springboot.config.AppConfig;
 import com.github.abel533.echarts.Option;
 import com.github.abel533.echarts.json.GsonUtil;
 
@@ -21,7 +22,8 @@ public class MyEchartsTemplate {
 	 * Default constructor.
 	 */
 	public MyEchartsTemplate() {
-		engine = MyThymeleafUtils.newTemplateEngine();
+		boolean enableCache = AppConfig.IS_IN_PRODUCTION;
+		engine = MyThymeleafUtils.newTemplateEngine(enableCache);
 	}
 
 	/**

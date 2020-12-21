@@ -5,10 +5,13 @@ import java.util.List;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import com.example.springboot.config.AppConfig;
+
 import tech.tablesaw.api.Table;
 
 /**
- * A template processing engine for [Tablesaw](https://github.com/jtablesaw/tablesaw).
+ * A template processing engine for
+ * [Tablesaw](https://github.com/jtablesaw/tablesaw).
  * 
  * https://attacomsian.com/blog/thymeleaf-iterate-map-list-set-array
  * 
@@ -17,14 +20,15 @@ import tech.tablesaw.api.Table;
 public class MyTablesawTemplate {
 	private static final String TABLESAW_SIMPLE_001 = "tablesaw_simple_001";
 	private static final String TABLESAW_SIMPLE_002 = "tablesaw_simple_002";
-	
+
 	private TemplateEngine engine;
-	
+
 	/**
 	 * Default constructor.
 	 */
 	public MyTablesawTemplate() {
-		engine = MyThymeleafUtils.newTemplateEngine();
+		boolean enableCache = AppConfig.IS_IN_PRODUCTION;
+		engine = MyThymeleafUtils.newTemplateEngine(enableCache);
 	}
 
 	/**

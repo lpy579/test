@@ -14,6 +14,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.stereotype.Component;
 
+/**
+ * Block access to protected resources if authentication failed (e.g. logged in
+ * but the role is not allowed to access the protected resource).
+ * 
+ * @author bobyuan
+ */
 @Component
 public class LoggingAccessDeniedHandler implements AccessDeniedHandler {
 

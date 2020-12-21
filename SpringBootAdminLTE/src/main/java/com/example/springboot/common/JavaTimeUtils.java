@@ -4,7 +4,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
 import java.time.ZoneId;
+import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Utility functions for java.time API (introduced since JDK 8).
@@ -14,41 +17,50 @@ import java.time.format.DateTimeFormatter;
  * 
  * @author bobyuan
  */
-public class LocalDateTimeUtils {
+public class JavaTimeUtils {
+	public static final String DEFAULT_DATE_TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-	// ---------- LocalDate and LocalDateTime parse and format ----------
+	// ---------- Parse and format ----------
 
-	/** parse date string like "2017-11-15" */
-	public static LocalDate parseLocalDate(final String strDate) {
+	/** Parse date string like "2017-11-15" */
+	public static LocalDate parseLocalDateISO(final String strDate) {
 		return LocalDate.parse(strDate);
 	}
 
-	/** format date string like "2017-11-15" */
-	public static String formatLocalDate(final LocalDate localDate) {
+	/** Format date string like "2017-11-15" */
+	public static String formatLocalDateISO(final LocalDate localDate) {
 		return localDate.format(DateTimeFormatter.ISO_LOCAL_DATE);
 	}
 
-	/** parse date time string like "2017-11-15 08:22:12" */
-	public static LocalDateTime parseLocalDateTime(final String strDateTime) {
-		return LocalDateTime.parse(strDateTime);
+	/**
+	 * Parse date time string like "2017-11-15T08:22:12" or "2017-11-15T08:22:12.896". 
+	 * Will also be capable to parse default format like "2017-11-15 08:22:12".
+	 */
+	public static LocalDateTime parseLocalDateTimeISO(final String strDateTime) {
+		try {
+			return LocalDateTime.parse(strDateTime);
+		} catch (DateTimeParseException e1) {
+			// continue by using default format.
+			return LocalDateTime.parse(strDateTime, DateTimeFormatter.ofPattern(DEFAULT_DATE_TIME_FORMAT));
+		}
 	}
 
-	/** format date time string like "2017-11-15 08:22:12" */
-	public static String formatLocalDateTime(final LocalDateTime localDateTime) {
+	/**
+	 * Format date time string like "2017-11-15T08:22:12" or "2017-11-15T08:22:12.896"
+	 */
+	public static String formatLocalDateTimeISO(final LocalDateTime localDateTime) {
 		return localDateTime.format(DateTimeFormatter.ISO_LOCAL_DATE_TIME);
 	}
 
 	// ---------- LocalDate converting methods ----------
 
 	public static LocalDate sqlDateToLocalDate(final java.sql.Date sqlDateToConvert) {
-		// return
-		// Optional.ofNullable(sqlDateToConvert).map(java.sql.Date::toLocalDate).orElse(null);
+		// return Optional.ofNullable(sqlDateToConvert).map(java.sql.Date::toLocalDate).orElse(null);
 		return sqlDateToConvert.toLocalDate();
 	}
 
 	public static java.sql.Date localDateToSqlDate(final LocalDate localDateToConvert) {
-		// return
-		// Optional.ofNullable(localDateToConvert).map(java.sql.Date::valueOf).orElse(null);
+		// return Optional.ofNullable(localDateToConvert).map(java.sql.Date::valueOf).orElse(null);
 		return java.sql.Date.valueOf(localDateToConvert);
 	}
 
@@ -78,19 +90,32 @@ public class LocalDateTimeUtils {
 		return java.util.Date.from(localDateTimeToConvert.atZone(ZoneId.systemDefault()).toInstant());
 	}
 
+	// ---------- LocalDateTime to ZonedDateTime ----------
+	// https://stackoverflow.com/questions/34626382/convert-localdatetime-to-localdatetime-in-utc
+
+	public static ZonedDateTime localDateTimeToZonedDateTimeInSystemDefault(final LocalDateTime localDateTime) {
+		ZonedDateTime ldtZoned = localDateTime.atZone(ZoneId.systemDefault());
+		return ldtZoned;
+	}
+
+	public static ZonedDateTime localDateTimeToZonedDateTimeInUTC(final LocalDateTime localDateTime) {
+		ZonedDateTime ldtZoned = localDateTime.atZone(ZoneId.systemDefault());
+		ZonedDateTime utcZoned = ldtZoned.withZoneSameInstant(ZoneOffset.UTC);
+		return utcZoned;
+	}
+
 	// ---------- Utility functions ----------
 
-	public static int calcAge(LocalDate beginDate, LocalDate endDate) {
+	public static int calcAge(final LocalDate beginDate, final LocalDate endDate) {
 		Period p = Period.between(beginDate, endDate);
 		int years = p.getYears();
-		//int months = p.getMonths();
-		//int days = p.getDays();
+		// int months = p.getMonths();
+		// int days = p.getDays();
 		return years;
 	}
 
-	public static int calcAge(LocalDate beginDate) {
+	public static int calcAge(final LocalDate beginDate) {
 		LocalDate endDate = LocalDate.now();
 		return calcAge(beginDate, endDate);
 	}
-
 }

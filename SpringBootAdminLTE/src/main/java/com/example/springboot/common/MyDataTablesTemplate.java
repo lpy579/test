@@ -6,12 +6,14 @@ import java.util.TreeMap;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import com.example.springboot.config.AppConfig;
+
 /**
  * A template processing engine for [DataTables](https://www.datatables.net).
  * 
  * @author bobyuan
  */
-public class MyDataTablesTemplate extends MyThymeleafUtils {
+public class MyDataTablesTemplate {
 	public static final String DATATABLES_SIMPLE_001 = "datatables_simple_001";
 	public static final String DATATABLES_SIMPLE_002 = "datatables_simple_002";
 	
@@ -22,7 +24,8 @@ public class MyDataTablesTemplate extends MyThymeleafUtils {
 	 * Default constructor.
 	 */
 	public MyDataTablesTemplate() {
-		engine = MyThymeleafUtils.newTemplateEngine();
+		boolean enableCache = AppConfig.IS_IN_PRODUCTION;
+		engine = MyThymeleafUtils.newTemplateEngine(enableCache);
 	}
 
 	public void add(String tableId, String tableOptionJson) {
