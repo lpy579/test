@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import com.github.abel533.echarts.axis.CategoryAxis;
@@ -22,6 +23,7 @@ import com.github.abel533.echarts.style.itemstyle.Normal;
  * 
  * @author bobyuan
  */
+@Tag("junit5")
 class MyEchartsTemplateTest {
 	/**
 	 * A example bar chart.
@@ -104,11 +106,12 @@ class MyEchartsTemplateTest {
 	@Disabled
 	void testPreview() {
 		GsonOption chartOption = getBarChart1(true);
-		MyEchartsTemplate template = new MyEchartsTemplate();
 		try {
+			MyEchartsTemplate template = new MyEchartsTemplate();
 			template.preview(chartOption);
 		} catch (Exception e) {
 			e.printStackTrace();
+			Assertions.fail(e.getMessage());
 		}
 	}
 }

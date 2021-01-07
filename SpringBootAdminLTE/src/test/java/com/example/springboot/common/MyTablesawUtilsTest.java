@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import tech.tablesaw.api.ColumnType;
@@ -11,6 +12,7 @@ import tech.tablesaw.api.DoubleColumn;
 import tech.tablesaw.api.StringColumn;
 import tech.tablesaw.api.Table;
 
+@Tag("junit5")
 class MyTablesawUtilsTest {
 	private static Table getTablesawTable1() {
 		String[] animals = { "bear", "cat", "giraffe" };
@@ -23,19 +25,6 @@ class MyTablesawUtilsTest {
 		return cuteAnimals;
 	}
 	
-	/*
-	private static Table getTablesawTable2() {
-		String[] cities = { "广州", "深圳", "珠海", "汕头", "韶关", "佛山" };
-		int[] datas = { 6030, 7800, 5200, 3444, 2666, 5708 };
-
-		Table cityValues = Table.create("地市数据").addColumns(
-				StringColumn.create("城市", cities),
-				IntColumn.create("数据", datas));
-
-		return cityValues;
-	}
-	*/
-
 	@Test
 	public void test_getTablesawColumList() {
 		Table table = getTablesawTable1();

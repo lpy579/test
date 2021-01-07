@@ -20,10 +20,10 @@ spring:
       ddl-auto: validate
     properties:
       hibernate:
-        format_sql: true
+        '[format_sql]': true
         dialect: org.hibernate.dialect.H2Dialect
         jdbc:
-          time_zone: UTC
+          '[time_zone]': UTC
     database: h2
     database-platform: H2
     open-in-view: true
@@ -62,6 +62,7 @@ spring:
       enabled: true
       location: ${java.io.tmpdir}
 
+
 logging:
   pattern:
     console: "%d{yyyy-MM-dd HH:mm:ss} %-5level - %msg%n"
@@ -69,7 +70,7 @@ logging:
     name: logs/webapp.log
   level:
     root: WARN
-    org.springframework.web: WARN
-    org.springframework.security: INFO
-    org.hibernate: ERROR
-    com.example.springboot: INFO
+    '[org.springframework.web]': WARN
+    '[org.springframework.security]': INFO
+    '[org.hibernate]': ERROR
+    '[com.example.springboot]': INFO

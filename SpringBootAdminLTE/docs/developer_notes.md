@@ -75,7 +75,7 @@ The database connection is configured in `application.yml` under the main resour
 
 ### H2
 
-This is a file based database, the DB connection URL is set to: `database.url=jdbc:h2:~/h2/SpringBootAdminLTE` in resources file `application.properties`. The data folder  `~/h2` is in current user's home, and the data file will be created by Hibernate if not yet exist.
+This is a file based database, the DB connection URL is set to: `database.url=jdbc:h2:~/h2/SpringBootAdminLTE` in resources file `application.yml`. The data folder  `~/h2` is in current user's home, and the data file will be created by Hibernate if not yet exist.
 
 When this application is running, you can use the H2 database console via link: 
 

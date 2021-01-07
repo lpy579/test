@@ -7,13 +7,21 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.net.URI;
 import java.net.URISyntaxException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.http.client.utils.URIBuilder;
 
+/**
+ * Commonly used base utility functions.
+ * 
+ * @author bobyuan
+ */
 public class MyCommonUtils {
 	/**
 	 * Save the text content (in UTF-8) to given file, using Apache Commons IO.
@@ -41,6 +49,31 @@ public class MyCommonUtils {
 		return content;
 	}
 
+	/**
+	 * Build the URL string with provided URL and parameters.
+	 * Note it will skip parameter whose value is null.
+	 * 
+	 * @param baseUrl The base URL.
+	 * @param paramMap The parameter map.
+	 * @return An URL in string, escaped.
+	 * @throws URISyntaxException If any error in building the URI.
+	 */
+	public static String buildUrlString(final String baseUrl, final Map<String, String> paramMap)
+			throws URISyntaxException {
+		URIBuilder b = new URIBuilder(baseUrl);
+
+		for (Map.Entry<String, String> entry : paramMap.entrySet()) {
+			String key = entry.getKey();
+			String value = entry.getValue();
+			if (value != null) {
+				b.addParameter(key, value);
+			}
+		}
+
+		URI uri = b.build();
+		return uri.toString();
+	}
+	
 	/**
 	 * Open a default browser to the given URL.
 	 * https://stackoverflow.com/questions/5226212/how-to-open-the-default-webbrowser-using-java

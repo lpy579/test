@@ -1,6 +1,7 @@
 package com.example.springboot.common;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
 import tech.tablesaw.api.DoubleColumn;
@@ -12,6 +13,7 @@ import tech.tablesaw.api.Table;
  * 
  * @author bobyuan
  */
+@Tag("junit5")
 class MyTablesawTemplateTest {
 	public static Table getTablesawTable() {
 		String[] animals = { "bear", "cat", "giraffe", "dog", "duck", "fish", "mouse", "monkey", "bird", "snake", "rabbit", "worm" };
@@ -61,11 +63,12 @@ class MyTablesawTemplateTest {
 	void test_preview() {
 		Table tablesawObj = getTablesawTable();
 
-		MyTablesawTemplate template = new MyTablesawTemplate();
 		try {
+			MyTablesawTemplate template = new MyTablesawTemplate();
 			template.preview(tablesawObj);
 		} catch (Exception e) {
 			e.printStackTrace();
+			Assertions.fail(e.getMessage());
 		}
 	}
 }

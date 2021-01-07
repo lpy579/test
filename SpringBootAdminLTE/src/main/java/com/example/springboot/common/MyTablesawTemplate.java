@@ -32,7 +32,7 @@ public class MyTablesawTemplate {
 	}
 
 	/**
-	 * Generate the table tag.
+	 * Generate the table tag, using generic List objects.
 	 */
 	public String generateTag(String tableId, final List<String> columnNameList, final List<List<Object>> tableData) {
 		Context context = new Context();
@@ -43,7 +43,7 @@ public class MyTablesawTemplate {
 	}
 
 	/**
-	 * Generate the table tag.
+	 * Generate the table tag, using Table object from Tablesaw.
 	 */
 	public String generateTag(String tableId, final Table tablesawObj) {
 		List<String> columnNameList = MyTablesawUtils.getTablesawColumNameList(tablesawObj);
@@ -52,7 +52,7 @@ public class MyTablesawTemplate {
 	}
 
 	/**
-	 * Generate the whole HTML.
+	 * Generate the whole HTML, using generic List objects.
 	 */
 	public String generateHTML(final List<String> columnNameList, final List<List<Object>> tableData) {
 		Context context = new Context();
@@ -63,7 +63,7 @@ public class MyTablesawTemplate {
 	}
 
 	/**
-	 * Generate the whole HTML.
+	 * Generate the whole HTML, using Table object from Tablesaw.
 	 */
 	public String generateHTML(final Table tablesawObj) {
 		List<String> columnNameList = MyTablesawUtils.getTablesawColumNameList(tablesawObj);

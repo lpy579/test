@@ -1,8 +1,10 @@
 package com.example.springboot.common;
 
 import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
+@Tag("junit5")
 class MyDataTablesTemplateTest {
 
 	@Test
