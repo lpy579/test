@@ -5,10 +5,7 @@ import java.util.stream.Collectors;
 
 import org.assertj.core.util.Arrays;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-
-import com.example.springboot.common.MyTablesawTemplate;
 
 import tech.tablesaw.api.ColumnType;
 import tech.tablesaw.api.Row;
@@ -17,7 +14,7 @@ import tech.tablesaw.api.Table;
 class CuteAnimalExampleTest {
 
 	@Test
-	@Disabled
+	//@Disabled
 	void test() {
 		Table table = CuteAnimalExample.getTable1();
 		//System.out.println(table);

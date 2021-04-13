@@ -46,7 +46,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     	http.authorizeRequests()
     	.antMatchers("/examples/security/protected1*").hasRole("USER") //USER role can access
     	.antMatchers("/examples/security/protected2*").hasRole("ADMIN") //ADMIN role can access
-    	.antMatchers("/", "/favico.ico", "/webjars/**", "/h2-console/**",
+    	.antMatchers("/", "/favicon.ico", "/webjars/**", "/h2-console/**",
     			"/asset/**", "/dist/**", "/myfiles/**", "/pages/**", "/plugins/**", "/home/**", 
     			"/examples/**").permitAll() // anyone can access
         .anyRequest().authenticated() //any other request just need authentication

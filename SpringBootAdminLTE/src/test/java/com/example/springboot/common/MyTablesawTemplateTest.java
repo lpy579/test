@@ -1,6 +1,7 @@
 package com.example.springboot.common;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 
@@ -60,6 +61,7 @@ class MyTablesawTemplateTest {
 	}
 
 	@Test
+	@Disabled
 	void test_preview() {
 		Table tablesawObj = getTablesawTable();
 

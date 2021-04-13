@@ -61,16 +61,16 @@ class MyCommonUtilsTest {
 		paramMap.put("中文", "http://gamil.google.com/?q=中文");
 		
 		String url = MyCommonUtils.buildUrlString(baseUrl, paramMap);
-		//System.out.println(url);
+		System.out.println(url);
 		//http://localhost:8080?key1=&key2=+&key3=+he+llo+&key4=%E4%BD%A0%E5%A5%BD&key5=+%E4%B8%96+%E7%95%8C+&%E4%B8%AD%E6%96%87=http%3A%2F%2Fgamil.google.com%2F%3Fq%3D%E4%B8%AD%E6%96%87
 		
 		Assertions.assertTrue(url.startsWith(baseUrl + "?key1=&"));
-		Assertions.assertTrue(url.contains("&key2=value2"));
-		Assertions.assertTrue(url.contains("&key3=value3"));
+		Assertions.assertTrue(url.contains("&key2=+"));
+		Assertions.assertTrue(url.contains("&key3=+he+llo"));
 		Assertions.assertTrue(url.contains("&key4=%E4%BD%A0%E5%A5%BD"));
 		Assertions.assertTrue(url.contains("&key5=+%E4%B8%96+%E7%95%8C+"));
 		Assertions.assertFalse(url.contains("&key6="));
-		Assertions.assertTrue(url.contains("&%E7%95%8C+&%E4%B8%AD%E6%96%87=http%3A%2F%2Fgamil.google.com%2F%3Fq%3D%E4%B8%AD%E6%96%87"));
+		Assertions.assertTrue(url.contains("&%E4%B8%AD%E6%96%87=http%3A%2F%2Fgamil.google.com%2F%3Fq%3D%E4%B8%AD%E6%96%87"));
 	}
 	
 	@Test
