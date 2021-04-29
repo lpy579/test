@@ -30,6 +30,10 @@ This web application is created using [spring initializr](https://start.spring.i
 Maven build commands:
 
 ```shell
+# Create eclipse project files (.project and .classpath)
+# Note, you can clean the 2 files by goal eclipse:clean 
+mvn eclipse:eclipse
+
 # Check jar dependency, useful in finding the conflicting jars
 mvn dependency:tree
 
