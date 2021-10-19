@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.4.5</version>
+        <version>2.5.5</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.example.springboot</groupId>
@@ -25,8 +25,9 @@
 
         <!-- Tablesaw, A Java dataframe implementation.
         https://github.com/jtablesaw
-        https://mvnrepository.com/artifact/tech.tablesaw/tablesaw-core -->
-        <tablesaw.version>0.38.2</tablesaw.version>
+        https://mvnrepository.com/artifact/tech.tablesaw/tablesaw-core 
+        -->
+        <tablesaw.version>0.41.0</tablesaw.version>
     </properties>
 
     <dependencies>
@@ -129,7 +130,7 @@
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
-            <version>2.8.0</version>
+            <version>2.11.0</version>
         </dependency>
 
         <!-- ECharts   https://gitee.com/free/ECharts
@@ -192,7 +193,7 @@
             <!-- Apache Maven Site Plugin
             The Site Plugin is used to generate a site for the project. The generated site also
             includes the project's reports that were configured in the POM.
-            https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-site-plugin/
+            https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-site-plugin
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -207,27 +208,27 @@
             <!-- Apache Maven Project Info Reports Plugin
             The Maven Project Info Reports plugin is used to generate reports information about the project.
             Normally, we take off the dependency report to save time.
-            https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-project-info-reports-plugin/
+            https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-project-info-reports-plugin
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-project-info-reports-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.1.2</version>
             </plugin>
 
             <!-- Apache Maven Javadoc Plugin
             The Javadoc Plugin uses the Javadoc tool to generate javadocs for the specified project.
-            https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-javadoc-plugin/
+            https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-javadoc-plugin
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
+                <version>3.3.1</version>
             </plugin>
 
             <!-- Maven JXR Plugin
             The JXR Plugin produces a cross-reference of the project's sources.
-            https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-jxr-plugin/
+            https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-jxr-plugin
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -239,12 +240,12 @@
             The PMD Plugin allows you to automatically run the PMD code analysis tool on your project's
             source code and generate a site report with its results.
             It also supports the separate Copy/Paste Detector tool (or CPD) distributed with PMD.
-            https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-pmd-plugin/
+            https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-pmd-plugin
             -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.14.0</version>
+                <version>3.15.0</version>
                 <configuration>
                     <skipEmptyReport>false</skipEmptyReport>
                 </configuration>
@@ -257,25 +258,13 @@
             <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>4.2.3</version>
+                <version>4.4.2.1</version>
             </plugin>
-
-            <!-- Apache Maven Checkstyle Plugin
-            The Checkstyle Plugin generates a report regarding the code style used by the developers.
-            https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin
-            -->
-            <!--
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>3.1.2</version>
-            </plugin>
-            -->
 
             <!-- Maven Surefire Report Plugin
             The Surefire Report Plugin parses the generated TEST-*.xml files under ${basedir}/target/surefire-reports
             and renders them using DOXIA, which creates the web interface version of the test results.
-            https://repo.maven.apache.org/maven2/org/apache/maven/plugins/maven-surefire-report-plugin/
+            https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-report-plugin
 
             This Plugin has these goals:
                 mvn surefire-report:report       #generate Surefire unit test report, output to: target/site/surefire-report.html
